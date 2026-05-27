@@ -13,7 +13,7 @@ const pins: {
   variant?: "default" | "alert";
 }[] = [
   {
-    top: "220px",
+    top: "340px",
     right: "380px",
     data: {
       rating: "4.6/5",
@@ -36,7 +36,7 @@ const pins: {
     },
   },
   {
-    top: "340px",
+    top: "460px",
     right: "230px",
     data: {
       rating: "4.2/5",
@@ -59,7 +59,7 @@ const pins: {
     },
   },
   {
-    top: "510px",
+    top: "630px",
     right: "410px",
     data: {
       rating: "4.8/5",
@@ -82,7 +82,7 @@ const pins: {
     },
   },
   {
-    top: "650px",
+    top: "770px",
     right: "290px",
     data: {
       rating: "3.9/5",
@@ -105,7 +105,7 @@ const pins: {
     },
   },
   {
-    top: "280px",
+    top: "400px",
     right: "150px",
     data: {
       rating: "4.4/5",
@@ -128,7 +128,7 @@ const pins: {
     },
   },
   {
-    top: "440px",
+    top: "560px",
     right: "180px",
     variant: "alert",
     data: {
@@ -152,7 +152,7 @@ const pins: {
     },
   },
   {
-    top: "580px",
+    top: "700px",
     right: "120px",
     variant: "alert",
     data: {
