@@ -21,10 +21,8 @@ export default function HeroMap({
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
       <div
-        className="absolute bottom-0 right-0 aspect-[1260/1050] bg-no-repeat bg-cover bg-bottom"
+        className="absolute inset-y-0 right-0 aspect-[1260/1050] bg-no-repeat bg-cover bg-right-bottom"
         style={{
-          width: `${config.mapWidthPct}%`,
-          maxWidth: "1260px",
           transform: `translate(${config.mapOffsetX}px, ${config.mapOffsetY}px)`,
           backgroundImage: "url('/hero-map.png')",
           WebkitMaskImage: mask,
