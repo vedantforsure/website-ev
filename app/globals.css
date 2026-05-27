@@ -12,15 +12,87 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ev-pin-card {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ev-pin-card[data-state="closed"] {
+  opacity: 0;
+  transform: scale(0.96) translateY(4px);
+  pointer-events: none;
+  transition:
+    opacity 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@starting-style {
+  .ev-pin-card[data-state="open"] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.ev-pin-card[data-state="open"] .ev-pin-signal-bar {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: ev-pin-row 370ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: 120ms;
+}
+
+.ev-pin-card[data-state="open"] .ev-pin-util-fill {
+  transform: scaleY(0);
+  animation: ev-pin-grow 570ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.ev-pin-card[data-state="open"] .ev-pin-util-fill { animation-delay: 200ms; }
+.ev-pin-card[data-state="open"]
+  > *:nth-child(6)
+  > *:nth-child(2)
+  > *:nth-child(1)
+  .ev-pin-util-fill { animation-delay: 200ms; }
+.ev-pin-card[data-state="open"]
+  > *:nth-child(6)
+  > *:nth-child(2)
+  > *:nth-child(2)
+  .ev-pin-util-fill { animation-delay: 260ms; }
+.ev-pin-card[data-state="open"]
+  > *:nth-child(6)
+  > *:nth-child(2)
+  > *:nth-child(3)
+  .ev-pin-util-fill { animation-delay: 320ms; }
+.ev-pin-card[data-state="open"]
+  > *:nth-child(6)
+  > *:nth-child(2)
+  > *:nth-child(4)
+  .ev-pin-util-fill { animation-delay: 380ms; }
+
+@keyframes ev-pin-row {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ev-pin-grow {
+  to { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-pin-card,
+  .ev-pin-card *,
+  .ev-pin-signal-bar,
+  .ev-pin-util-fill {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
