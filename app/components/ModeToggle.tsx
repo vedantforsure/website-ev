@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import Logo from "./Logo";
+import { playToggle } from "./sounds";
 
 type Mode = "explore" | "design";
 
@@ -78,12 +79,15 @@ export default function ModeToggle({
   onChange?: (mode: Mode) => void;
 }) {
   const [mode, setMode] = useState<Mode>(defaultMode);
+  const modeRef = useRef<Mode>(defaultMode);
   const containerRef = useRef<HTMLDivElement>(null);
   const exploreRef = useRef<HTMLButtonElement>(null);
   const designRef = useRef<HTMLButtonElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0, ready: false });
 
   function setAndNotify(next: Mode) {
+    if (next !== modeRef.current) playToggle();
+    modeRef.current = next;
     setMode(next);
     onChange?.(next);
   }

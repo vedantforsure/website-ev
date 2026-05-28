@@ -177,6 +177,11 @@ const pins: {
   },
 ];
 
+const PIN_SIZE = 40;
+const pinTops = pins.map((p) => parseFloat(p.top));
+const pinClusterTop = Math.min(...pinTops);
+const pinClusterHeight = Math.max(...pinTops) - pinClusterTop + PIN_SIZE;
+
 const bullets = [
   "Access to 20,000+ EV station worldwide",
   "Up-to-date date on EV usage and adoption across the world",
@@ -188,24 +193,29 @@ export default function Hero() {
     <section className="relative h-screen w-full overflow-hidden bg-[#4BA6C6]">
       <HeroMap />
       <EVPinGroup>
-        {pins.map((p, i) => (
-          <div
-            key={i}
-            className="absolute z-10"
-            style={{ top: p.top, right: p.right }}
-          >
-            <EVPin data={p.data} variant={p.variant} />
-          </div>
-        ))}
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10"
+          style={{ height: pinClusterHeight }}
+        >
+          {pins.map((p, i) => (
+            <div
+              key={i}
+              className="absolute"
+              style={{ top: parseFloat(p.top) - pinClusterTop, right: p.right }}
+            >
+              <EVPin data={p.data} variant={p.variant} />
+            </div>
+          ))}
+        </div>
       </EVPinGroup>
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
         <ModeToggle />
       </div>
-      <div className="relative z-10 h-screen flex items-center px-6 md:px-12 lg:px-[120px] pt-32 pb-16 pointer-events-none">
+      <div className="relative z-10 h-screen flex items-center px-6 md:px-12 lg:px-[120px] py-16 pointer-events-none">
         <div className="flex flex-col gap-10 items-start max-w-[700px] pointer-events-auto">
           <div className="flex flex-col gap-5 items-start">
             <div className="backdrop-blur-[10px] bg-black/25 rounded-[88px] px-4 py-2">
-              <span className="font-medium text-[20px] leading-[28px] tracking-[0.3px] text-white whitespace-nowrap">
+              <span className="font-normal text-[20px] leading-[28px] tracking-[0.3px] text-white whitespace-nowrap">
                 Used by 1200+ businesses worldwide
               </span>
             </div>

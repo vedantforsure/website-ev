@@ -1,6 +1,9 @@
+"use client";
+
 import Logo from "./Logo";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
+import { playNavTap } from "./sounds";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -23,6 +26,7 @@ export default function Navbar() {
               <li key={link.label}>
                 <a
                   href={link.href}
+                  onClick={() => playNavTap()}
                   className="relative py-1 inline-block rounded-sm active:opacity-80 transition-opacity duration-100 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1.5px] after:bg-white after:origin-left after:scale-x-0 after:transition-transform after:duration-200 after:ease motion-reduce:after:transition-none hover:after:scale-x-100"
                 >
                   {link.label}

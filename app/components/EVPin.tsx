@@ -12,6 +12,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { Calligraph } from "calligraph";
+import { playPinOpen, playPinClose } from "./sounds";
 
 const CARD_WIDTH = 431;
 const CARD_HEIGHT = 540;
@@ -296,7 +297,11 @@ export default function EVPin({
     <div ref={wrapperRef} className="relative">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          if (open) playPinClose();
+          else playPinOpen();
+          setOpen((v) => !v);
+        }}
         aria-expanded={open}
         aria-label={open ? "Close station details" : "Open station details"}
         className={`relative z-10 flex flex-col items-center justify-center size-10 rounded-full border-[1.5px] backdrop-blur-[10px] overflow-clip shadow-[0px_8px_12px_0px_rgba(0,0,0,0.4)] cursor-pointer transition-[transform,border-color,background-color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.96] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 motion-reduce:transition-none motion-reduce:active:scale-100 ${
